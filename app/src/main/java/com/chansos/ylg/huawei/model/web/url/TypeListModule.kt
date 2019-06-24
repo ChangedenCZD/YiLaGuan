@@ -1,10 +1,16 @@
 package com.chansos.ylg.huawei.model.web.url
 
-data class TypeListModule(
-    val `data`: ArrayList<Type>
-)
+import io.realm.RealmList
+import io.realm.RealmObject
 
-data class Type(
-    val title: String,
-    val type: String
-)
+open class TypeListModule : RealmObject() {
+
+    var `data` = RealmList<TypeListModuleItem>()
+    var expired = System.currentTimeMillis()
+}
+
+open class TypeListModuleItem : RealmObject() {
+
+    var title: String? = ""
+    var type: String? = ""
+}

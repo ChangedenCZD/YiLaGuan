@@ -20,9 +20,10 @@ import com.chansos.libs.rxkotlin.annotations.PageLayoutId
 import com.chansos.libs.rxkotlin.classes.BaseActivity
 import com.chansos.libs.rxkotlin.classes.BaseRecyclerViewAdapter
 import com.chansos.ylg.huawei.R
-import com.chansos.ylg.huawei.model.web.url.Type
+import com.chansos.ylg.huawei.model.web.url.TypeListModuleItem
 import com.chansos.ylg.huawei.utils.U
 import com.google.android.material.tabs.TabLayout
+import io.realm.RealmList
 import kotlinx.android.synthetic.main.activity_main.*
 
 @PageLayoutId(R.layout.activity_main)
@@ -44,13 +45,17 @@ class MainActivity : BaseActivity(), MainContract.View, ViewPager.OnPageChangeLi
         presenter.fetchTypeList()
     }
 
-    override fun showTypeList(typeList: ArrayList<Type>) {
+    override fun showTypeList(typeList: RealmList<TypeListModuleItem>) {
+        val webTypePresenter = WebTypePresenter()
         typeList.forEach {
             val fragment = WebTypeFragment()
             val arguments = Bundle()
+            val type = it.type!!
             arguments.putString("title", it.title)
-            arguments.putString("type", it.type)
+            arguments.putString("type", type)
             fragment.arguments = arguments
+            fragment.presenter = webTypePresenter
+            webTypePresenter.bind(type, fragment)
             webTypeFragmentList.add(fragment)
         }
         viewPagerAdapter.setList(webTypeFragmentList)
@@ -59,14 +64,14 @@ class MainActivity : BaseActivity(), MainContract.View, ViewPager.OnPageChangeLi
         onPageSelected(0)
     }
 
-    private fun setTabLayout(typeList: ArrayList<Type>) {
+    private fun setTabLayout(typeList: RealmList<TypeListModuleItem>) {
         viewPagerAdapter.setList(webTypeFragmentList)
         tab_layout.setupWithViewPager(view_pager)
         for (i in 0 until tab_layout.tabCount) {
             val tab = tab_layout.getTabAt(i)
             if (tab != null) {
                 tab.setCustomView(R.layout.item_url_type_tab)
-                tab.customView?.findViewById<TextView>(R.id.url_type_tab_item_label)?.text = typeList[i].title
+                tab.customView?.findViewById<TextView>(R.id.url_type_tab_item_label)?.text = typeList[i]?.title
             }
         }
     }

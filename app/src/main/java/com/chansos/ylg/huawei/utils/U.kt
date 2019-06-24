@@ -5,6 +5,7 @@ import android.net.Uri
 import com.chansos.libs.rxkotlin.classes.BaseActivity
 import com.chansos.libs.rxkotlin.classes.BaseFragment
 import com.chansos.ylg.huawei.module.main.WebTypeFragment
+import io.realm.RealmList
 
 class U {
     companion object {
@@ -22,6 +23,12 @@ class U {
             intent.data = Uri.parse(url)
 //        intent.setClassName("com.android.browser", "com.android.browser.BrowserActivity")
             fragment.startActivityForResult(intent, WebTypeFragment.CODE_REQUEST_BROWSER)
+        }
+
+        fun <T> convertList(list: RealmList<T>): ArrayList<T> {
+            val arrayList = ArrayList<T>()
+            arrayList.addAll(list)
+            return arrayList
         }
     }
 }

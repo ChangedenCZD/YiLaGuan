@@ -1,6 +1,7 @@
 package com.chansos.ylg.huawei.module.main
 
 import android.net.Uri
+import android.text.TextUtils
 import android.view.View
 import com.chansos.libs.rxkotlin.Kt
 import com.chansos.libs.rxkotlin.classes.BaseFragment
@@ -17,15 +18,24 @@ class UrlListAdapter(private var fragment: BaseFragment) : BaseRecyclerViewAdapt
 
     override fun onBind(viewHolder: BaseRecyclerViewHolder, data: UrlItem, position: Int) {
         viewHolder.setText(R.id.web_url_item_title, data.content)
-        val uri = Uri.parse(data.href)
+        val href = data.href
+        val uri = Uri.parse(href)
         Kt.Image.setDefaultImage(R.mipmap.ic_launcher)
         Kt.Image.setErrorImage(R.mipmap.ic_launcher)
-        Kt.Image.load(
-            viewHolder.get(R.id.web_url_item_icon),
-            "${uri.scheme}://${uri.host}/favicon.ico",
-            fragment
-        )
-        viewHolder.setImage(R.id.web_url_item_icon, "${uri.scheme}://${uri.host}/favicon.ico")
+        val icon = data.icon
+        if (TextUtils.isEmpty(icon)) {
+            Kt.Image.load(
+                viewHolder.get(R.id.web_url_item_icon),
+                "${uri.scheme}://${uri.host}/favicon.ico",
+                fragment
+            )
+        } else {
+            Kt.Image.load(
+                viewHolder.get(R.id.web_url_item_icon),
+                icon,
+                fragment
+            )
+        }
     }
 
     override fun onViewCreate(view: View) {

@@ -1,15 +1,21 @@
 package com.chansos.ylg.huawei.model.web.url
 
-data class UrlListModel(
-    val list: ArrayList<TypeItem>
-)
+import io.realm.RealmList
+import io.realm.RealmObject
 
-data class TypeItem(
-    val list: ArrayList<UrlItem>,
-    val title: String
-)
+open class UrlListModel : RealmObject() {
+    var list = RealmList<TypeItem>()
+    var type = ""
+    var expired = System.currentTimeMillis()
+}
 
-data class UrlItem(
-    val content: String,
-    val href: String
-)
+open class TypeItem : RealmObject() {
+    var list = RealmList<UrlItem>()
+    var title = ""
+}
+
+open class UrlItem : RealmObject() {
+    var content = ""
+    var href = ""
+    var icon = ""
+}

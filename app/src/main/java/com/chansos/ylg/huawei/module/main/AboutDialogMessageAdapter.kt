@@ -11,7 +11,6 @@ class AboutDialogMessageAdapter : BaseRecyclerViewAdapter<String>() {
     private var resource = Kt.App.getResources()
     private var labelList: Array<String> = resource.getStringArray(R.array.about_message_label_list)
     private var descriptionList: Array<String> = resource.getStringArray(R.array.about_message_description_list)
-//    private var urlList: Array<String> = resource.getStringArray(R.array.about_message_url_list)
 
     override fun getRootLayoutResId(): Int {
         return R.layout.item_about_dialog_message_list

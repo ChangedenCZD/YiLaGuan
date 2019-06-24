@@ -1,10 +1,12 @@
 apply plugin: 'com.android.application'
 
-apply plugin: 'realm-android'
 
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'realm-android'
+apply plugin: 'kotlin-kapt'
 
 
 android {
@@ -48,12 +50,6 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     /* Libs */
     implementation 'com.chansos.libs:rxkotlin:0.3.3'
-    /* Support */
-    /*
-    implementation "com.android.support:appcompat-v7:$sdk_version"
-    implementation "com.android.support:recyclerview-v7:$sdk_version"
-    implementation "com.android.support:design:$sdk_version"
-    */
     /* 华为服务 */
     /*
     String hms_version = '2.6.3.306'

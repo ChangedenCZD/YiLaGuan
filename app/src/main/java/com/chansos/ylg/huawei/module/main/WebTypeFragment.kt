@@ -4,28 +4,30 @@ package com.chansos.ylg.huawei.module.main
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.widget.AbsListView.OnScrollListener.SCROLL_STATE_IDLE
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.chansos.libs.rxkotlin.Kt
-import com.chansos.libs.rxkotlin.annotations.Autowire
 import com.chansos.libs.rxkotlin.annotations.PageLayoutId
 import com.chansos.libs.rxkotlin.classes.BaseViewPagerFragment
 import com.chansos.ylg.huawei.R
 import com.chansos.ylg.huawei.model.web.url.TypeItem
 import com.chansos.ylg.huawei.model.web.url.UrlItem
 import com.chansos.ylg.huawei.utils.U
+import io.realm.RealmList
 import kotlinx.android.synthetic.main.fragment_web_type.*
 
 
 @PageLayoutId(R.layout.fragment_web_type)
-class WebTypeFragment : BaseViewPagerFragment(), MainContract.WebTypeView, UrlTypeChildListAdapter.OnUrlItemClick {
+class WebTypeFragment : BaseViewPagerFragment(), MainContract.WebTypeView,
+    UrlTypeChildListAdapter.OnUrlItemClick {
 
     companion object {
         const val CODE_REQUEST_BROWSER = 1
     }
 
-    @Autowire
-    private lateinit var presenter: WebTypePresenter
+    var presenter: WebTypePresenter? = null
 
     private lateinit var pageTitle: String
     private lateinit var pageType: String
@@ -45,11 +47,11 @@ class WebTypeFragment : BaseViewPagerFragment(), MainContract.WebTypeView, UrlTy
         pageTitle = this.arguments?.getString("title") ?: ""
         pageType = this.arguments?.getString("type") ?: ""
 
-        presenter.fetchData(pageType)
+        presenter?.fetchData(pageType)
     }
 
-    override fun showUrlList(list: ArrayList<TypeItem>) {
-        urlTypeChildListAdapter.setDataList(list)
+    override fun showUrlList(list: RealmList<TypeItem>) {
+        urlTypeChildListAdapter.setDataList(U.convertList(list))
     }
 
     override fun onItemClick(data: UrlItem) {
