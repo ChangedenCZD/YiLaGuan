@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">易拉罐</string>
+    <string name="about">关于</string>
+    <string name="exit">退出</string>
+
+    <string name="url_item_copy_success">链接复制成功</string>
+    <string name="url_item_copy_fail">链接复制失败</string>
+
+    <string name="powered_by">Powered by 兔子人开源</string>
+
+    <string-array name="url_item_operations">
+        <item>使用浏览器打开</item>
+        <item>复制链接</item>
+    </string-array>
+
+    <string-array name="about_message_label_list">
+        <!--<item>资讯</item>-->
+        <item>代码</item>
+        <item>官网</item>
+    </string-array>
+    <string-array name="about_message_description_list">
+        <!--<item>极客导航</item>-->
+        <item>Github</item>
+        <item>兔子人开源</item>
+    </string-array>
+    <string-array name="about_message_url_list">
+        <!--<item>https://www.jikedaohang.com</item>-->
+        <item>https://github.com/orgs/Chans-Open-Source</item>
+        <item>https://chansos.com</item>
+    </string-array>
+</resources>

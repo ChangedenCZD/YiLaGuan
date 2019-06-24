@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.chansos.ylg.huawei">
+    <!-- EXTERNAL STORAGE -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> <!-- NETWORK -->
+    <uses-permission android:name="android.permission.INTERNET"/> <!-- 检测网络状态 | Detecting Network status -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> <!-- 检测wifi状态 | Detecting WiFi status -->
+    <uses-permission
+            android:name="android.permission.ACCESS_WIFI_STATE"/> <!-- 获取用户手机的IMEI，用来唯一的标识设备。 | Gets the IMEI of the user's phone, used to uniquely identify the device. -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/> <!-- Android O版本调用安装需要使用该权限 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+
+    <application
+            android:name=".AppApplication"
+            android:allowBackup="false"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".module.main.MainActivity">
+        </activity>
+
+        <meta-data
+                android:name="com.huawei.hms.client.appid"
+                android:value="appid=100857015"/>
+        <meta-data
+                android:name="com.huawei.hms.version"
+                android:value="2.6.3">
+        </meta-data>
+
+        <activity android:name=".module.launch.LaunchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name="com.huawei.android.hms.agent.common.HMSAgentActivity"
+                android:configChanges="orientation|locale|screenSize|layoutDirection|fontScale"
+                android:excludeFromRecents="true"
+                android:exported="false"
+                android:hardwareAccelerated="true"
+                android:theme="@android:style/Theme.Translucent">
+            <meta-data
+                    android:name="hwc-theme"
+                    android:value="androidhwext:style/Theme.Emui.Translucent"/>
+        </activity>
+        <activity
+                android:name="com.huawei.android.hms.agent.hwid.HMSSignInAgentActivity"
+                android:configChanges="orientation|locale|screenSize|layoutDirection|fontScale"
+                android:excludeFromRecents="true"
+                android:exported="false"
+                android:hardwareAccelerated="true"
+                android:theme="@android:style/Theme.Translucent">
+            <meta-data
+                    android:name="hwc-theme"
+                    android:value="androidhwext:style/Theme.Emui.Translucent"/>
+        </activity>
+        <activity
+                android:name="com.huawei.hms.activity.BridgeActivity"
+                android:configChanges="orientation|locale|screenSize|layoutDirection|fontScale"
+                android:excludeFromRecents="true"
+                android:exported="false"
+                android:hardwareAccelerated="true"
+                android:theme="@android:style/Theme.Translucent">
+            <meta-data
+                    android:name="hwc-theme"
+                    android:value="androidhwext:style/Theme.Emui.Translucent"/>
+        </activity>
+
+        <provider
+                android:name="com.huawei.hms.update.provider.UpdateProvider"
+                android:authorities="com.chansos.ylg.huawei.hms.update.provider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+        </provider>
+    </application>
+
+</manifest>

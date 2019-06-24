@@ -1,0 +1,28 @@
+package com.chansos.ylg.huawei.module.main
+
+import com.chansos.libs.rxkotlin.classes.BaseContract
+import com.chansos.ylg.huawei.model.web.url.Type
+import com.chansos.ylg.huawei.model.web.url.TypeItem
+
+interface MainContract : BaseContract {
+    interface View : BaseContract.BaseView {
+        fun showTypeList(typeList: ArrayList<Type>)
+
+    }
+
+    interface Presenter : BaseContract.BasePresenter {
+        fun fetchTypeList()
+        fun exitApp()
+
+    }
+
+    interface WebTypeView : BaseContract.BaseView {
+        fun showUrlList(list: ArrayList<TypeItem>)
+
+    }
+
+    interface WebTypePresenter : BaseContract.BasePresenter {
+        fun fetchData(pageType: String)
+
+    }
+}
