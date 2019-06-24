@@ -13,4 +13,4 @@
 /captures
 .externalNativeBuild
 /resources/cert
-keys.txt
+/resources/jks

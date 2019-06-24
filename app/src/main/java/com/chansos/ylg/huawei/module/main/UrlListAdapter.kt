@@ -2,13 +2,10 @@ package com.chansos.ylg.huawei.module.main
 
 import android.net.Uri
 import android.view.View
-import android.widget.ImageView
-import com.alibaba.fastjson.JSON
 import com.chansos.libs.rxkotlin.Kt
 import com.chansos.libs.rxkotlin.classes.BaseFragment
 import com.chansos.libs.rxkotlin.classes.BaseRecyclerViewAdapter
 import com.chansos.libs.rxkotlin.classes.BaseRecyclerViewHolder
-import com.chansos.libs.rxkotlin.utils.LogUtils
 import com.chansos.ylg.huawei.R
 import com.chansos.ylg.huawei.model.web.url.UrlItem
 
